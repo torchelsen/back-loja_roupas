@@ -1,4 +1,4 @@
-module.exports = [
+const pessoas = [
     {
         id: 1,
         nome: "Pedro",
@@ -15,3 +15,5 @@ module.exports = [
         idade: 17
     }
 ];
+
+module.exports = pessoas;

@@ -4,6 +4,11 @@ const srv = express();
 srv.use(express.json());
 
 srv.get('/pessoas', pessoaController.listar);
+srv.get('/pessoas/:id', pessoaController.buscarPorId);
+srv.post('/pessoas', pessoaController.salvar);
+srv.put('/pessoas/:id', pessoaController.atualizar);
+srv.delete('/pessoas/:id', pessoaController.excluir);
+
 
 
 //srv.get(rota, função);
