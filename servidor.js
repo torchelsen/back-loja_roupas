@@ -9,6 +9,12 @@ srv.post('/pessoas', pessoaController.salvar);
 srv.put('/pessoas/:id', pessoaController.atualizar);
 srv.delete('/pessoas/:id', pessoaController.excluir);
 
+require("./db/mongo");
+const mongoose = require('mongoose');
+
+const ModeloExemplo = mongoose.model('Exemplo', {nome: String});
+const objetoExemplo = new ModeloExemplo({nome: "Apenas um teste!"});
+objetoExemplo.save().then(()=> console.log("Salvou!"));
 
 
 //srv.get(rota, função);
