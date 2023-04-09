@@ -1,13 +1,27 @@
-const pessoaController = require('./controllers/pessoaController');
+const vendedorController = require('./controllers/vendedorController');
+const vendaController = require('./controllers/vendaController');
+const estoqueController = require('./controllers/estoqueController');
 const express = require("express");
 const srv = express();
 srv.use(express.json());
 
-srv.get('/pessoas', pessoaController.listar);
-srv.get('/pessoas/:id', pessoaController.buscarPorId);
-srv.post('/pessoas', pessoaController.salvar);
-srv.put('/pessoas/:id', pessoaController.atualizar);
-srv.delete('/pessoas/:id', pessoaController.excluir);
+srv.get('/vendedores', vendedorController.listar);
+srv.get('/vendedores/:id', vendedorController.buscarPorId);
+srv.post('/vendedores', vendedorController.salvar);
+srv.put('/vendedores/:id', vendedorController.atualizar);
+srv.delete('/vendedores/:id', vendedorController.excluir);
+
+srv.get('/vendas', vendaController.listar);
+srv.get('/vendas/:id', vendaController.buscarPorId);
+srv.post('/vendas', vendaController.salvar);
+srv.put('/vendas/:id', vendaController.atualizar);
+srv.delete('/vendas/:id', vendaController.excluir);
+
+srv.get('/estoque', estoqueController.listar);
+srv.get('/estoque/:id', estoqueController.buscarPorId);
+srv.post('/estoque', estoqueController.salvar);
+srv.put('/estoque/:id', estoqueController.atualizar);
+srv.delete('/estoque/:id', estoqueController.excluir);
 
 require("./db/mongo");
 const mongoose = require('mongoose');
