@@ -1,39 +1,48 @@
-const vendedores = require('../db/mongo');
+//importa o model vendedores
+const vendedoresModel = require('../models/vendedoresModel');
 
 class VendedorController{
 
-
-    listar(req, res){
-       res.json(vendedores);   
+    async listar(req, res){  
+        //select * from vendedor;  
+        const resultado = await vendedoresModel.find({});
+        res.json(resultado);    
     }
 
-    buscarPorId(req, res){
-        const idReq = req.params.id;
-        const vendedor = vendedores.find(p => p.id == idReq);
-        res.json(vendedor);
+    async buscarPorCodigo(req, res){
+        const codigo  = req.params.codigo;
+        //select * from vendedor where codigo = 2;
+        const resultado = await vendedoresModel.findOne({'codigo': codigo});
+        res.json(resultado);
     }
 
-    salvar(req, res){
+    async salvar(req, res){
         const vendedor = req.body;
-        vendedores.push(vendedor);
-        res.json(vendedores);
+
+        //Gerador de novo código
+        //select * from vendedor order by codigo desc;
+        const objeto = await vendedoresModel.findOne({}).sort({'codigo': -1});
+        vendedor.codigo = objeto == null ? 1 : objeto.codigo + 1;
+
+        //insert into conteudo (xxx) values (xxxx);
+        const resultado = await vendedoresModel.create(vendedor);
+        res.json(resultado);        
     }
 
-    atualizar(req, res){
-        const id = req.params.id;
+    async atualizar(req, res){
+        const codigo = req.params.codigo;
         const vendedor = req.body;
-        const idx = vendedores.findIndex(p => p.id == id); 
-        vendedores[idx] = vendedor;
-        res.json(vendedores);
+        //update vendedor set xxxx values xxxx
+        await vendedoresModel.findOneAndUpdate({'codigo': codigo}, conteudo);
+        res.send("Vendedor atualizado!");
     }
 
-    excluir(req, res){
-        const id = req.params.id;
-        const idx = vendedores.findIndex(p => p.id == id);
-        vendedores.splice(idx, 1);
-        res.json(vendedores);
+    async excluir(req, res){
+        const codigo = req.params.codigo;
+        await vendedoresModel.findOneAndDelete({'codigo': codigo});
+        res.send("Vendedor excluído!");
     }
-
 }
 
+//exporta o objeto VendedorController
 module.exports = new VendedorController();
