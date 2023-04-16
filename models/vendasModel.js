@@ -8,8 +8,8 @@ const Schema = mongoose.Schema;
 const VendaSchema = new Schema({
     codigo: Number,
     dataVenda: Date,
-    valorTotal: Double   
+    valorTotal: Number
 });
 
 
-module.exports = mongoose.model('venda', VendaSchema);
+module.exports = mongoose.model('Venda', VendaSchema);

@@ -10,8 +10,8 @@ const VendedorSchema = new Schema({
     nome: String,
     ctps: String,
     dataContratacao: Date,
-    valorVendido: Double
+    valorVendido: Number,
 });
 
 
-module.exports = mongoose.model('vendedor', VendedorSchema);
+module.exports = mongoose.model('Vendedor', VendedorSchema);
