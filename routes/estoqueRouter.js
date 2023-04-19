@@ -11,3 +11,4 @@ router.put('/:codigo', estoqueController.atualizar);
 router.delete('/:codigo', estoqueController.excluir);
 
 module.exports = router;
+// alterar
