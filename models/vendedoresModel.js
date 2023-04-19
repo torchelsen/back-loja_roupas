@@ -10,7 +10,7 @@ const VendedorSchema = new Schema({
     nome: String,
     ctps: String,
     dataContratacao: Date,
-    valorVendido: Number,
+    valorVendido: Number
 });
 
 

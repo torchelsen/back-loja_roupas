@@ -25,9 +25,11 @@ class EstoqueController{
         estoque.codigo = objeto == null ? 1 : objeto.codigo + 1;
 
         //insert into estoque (xxx) values (xxxx);
-        const resultado = await estoqueModel.create(produto);
-        res.json(resultado);        
-    }
+        const resultado = await estoqueModel.create(estoque);
+        res.send("Produto adicionado ao estoque!");
+        res.json(resultado);
+    }    
+    
 
     async atualizar(req, res){
         const codigo = req.params.codigo;

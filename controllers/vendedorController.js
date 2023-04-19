@@ -26,12 +26,13 @@ class VendedorController{
 
         //insert into conteudo (xxx) values (xxxx);
         const resultado = await vendedoresModel.create(vendedor);
+        res.send("Vendedor criado!");
         res.json(resultado);        
     }
 
     async atualizar(req, res){
         const codigo = req.params.codigo;
-        const vendedor = req.body;
+        const conteudo = req.body;
         //update vendedor set xxxx values xxxx
         await vendedoresModel.findOneAndUpdate({'codigo': codigo}, conteudo);
         res.send("Vendedor atualizado!");

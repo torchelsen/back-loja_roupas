@@ -28,12 +28,13 @@ class VendaController{
 
         //insert into venda (xxx) values (xxxx);
         const resultado = await vendasModel.create(venda);
+        res.send("Venda criada!");
         res.json(resultado);        
     }
 
     async atualizar(req, res){
         const codigo = req.params.codigo;
-        const venda = req.body;
+        const conteudo = req.body;
         //update venda set xxxx values xxxx
         await vendasModel.findOneAndUpdate({'codigo': codigo}, conteudo);
         res.send("Venda atualizado!");
@@ -41,7 +42,7 @@ class VendaController{
 
     async excluir(req, res){
         const codigo = req.params.codigo;
-        await vendedoresModel.findOneAndDelete({'codigo': codigo});
+        await vendasModel.findOneAndDelete({'codigo': codigo});
         res.send("Venda excluído!");
     }
 }
