@@ -8,6 +8,7 @@ const Schema = mongoose.Schema;
 const VendaSchema = new Schema({
     codigo: Number,
     dataVenda: Date,
+    //produto
     valorTotal: Number
 });
 

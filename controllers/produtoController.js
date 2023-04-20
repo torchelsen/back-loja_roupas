@@ -1,31 +1,31 @@
 //importa o model estoque
-const estoqueModel = require('../models/estoqueModel');
+const produtoModel = require('../models/produtoModel');
 
-class EstoqueController{
+class ProdutoController{
 
     async listar(req, res){  
         //select * from venda;  
-        const resultado = await estoqueModel.find({});
+        const resultado = await produtoModel.find({});
         res.json(resultado);    
     }
 
     async buscarPorCodigo(req, res){
         const codigo  = req.params.codigo;
         //select * from venda where codigo = 2;
-        const resultado = await estoqueModel.findOne({'codigo': codigo});
+        const resultado = await produtoModel.findOne({'codigo': codigo});
         res.json(resultado);
     }
 
     async salvar(req, res){
-        const estoque = req.body;
+        const produto = req.body;
 
         //Gerador de novo código
         //select * from venda order by codigo desc;
-        const objeto = await estoqueModel.findOne({}).sort({'codigo': -1});
-        estoque.codigo = objeto == null ? 1 : objeto.codigo + 1;
+        const objeto = await produtoModel.findOne({}).sort({'codigo': -1});
+        produto.codigo = objeto == null ? 1 : objeto.codigo + 1;
 
         //insert into estoque (xxx) values (xxxx);
-        const resultado = await estoqueModel.create(estoque);
+        const resultado = await produtoModel.create(produto);
         res.send("Produto adicionado ao estoque!");
         res.json(resultado);
     }    
@@ -33,18 +33,18 @@ class EstoqueController{
 
     async atualizar(req, res){
         const codigo = req.params.codigo;
-        const estoque = req.body;
+        const produto = req.body;
         //update venda set xxxx values xxxx
-        await estoqueModel.findOneAndUpdate({'codigo': codigo}, estoque);
+        await produtoModel.findOneAndUpdate({'codigo': codigo}, produto);
         res.send("Produto atualizado!");
     }
 
     async excluir(req, res){
         const codigo = req.params.codigo;
-        await estoqueModel.findOneAndDelete({'codigo': codigo});
+        await produtoModel.findOneAndDelete({'codigo': codigo});
         res.send("Produto excluído!");
     }
 }
 
-//exporta o objeto EstoqueController
-module.exports = new EstoqueController();
+//exporta o objeto ProdutoController
+module.exports = new ProdutoController();

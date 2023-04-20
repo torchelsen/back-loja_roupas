@@ -13,9 +13,9 @@ srv.use(express.json());
     const vendaRouter = require('./routes/vendaRouter');
     srv.use('/venda', vendaRouter);
     
-    //rota do estoque
-    const estoqueRouter = require('./routes/estoqueRouter');
-    srv.use('/estoque', estoqueRouter);
+    //rota do produto
+    const produtoRouter = require('./routes/produtoRouter');
+    srv.use('/produto', produtoRouter);
 
 //servidor fica ouvindo a porta 3000
 srv.listen(3000, function(){
