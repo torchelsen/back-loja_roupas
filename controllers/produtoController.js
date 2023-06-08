@@ -1,5 +1,5 @@
 //importa o model estoque
-const produtoModel = require('../models/produtoModel');
+const produtoModel = require('../models/produtoModel').produtoModel;
 
 class ProdutoController{
 

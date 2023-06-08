@@ -1,23 +1,22 @@
-//chama o banco
-require("./db/mongo");
+//Chama o banco
+require("./db/mongo.js");
 const express = require("express");
 const srv = express();
 srv.use(express.json());
 
-//Roteamento das rotas
-    //rota do vendedor
-    const vendedorRouter = require('./routes/vendedorRouter');
-    srv.use('/vendedor', vendedorRouter);
+//Index e rotas de acesso livre
+srv.get("/", function (req, res) {
+    const mensagem =
+      "Servidor LojaFisica rodando...<br><br>" +
+      '<a href="http://localhost:3005/doc">Listar APIs</a>';
+    res.send(mensagem);
+});
 
-    //rota da venda
-    const vendaRouter = require('./routes/vendaRouter');
-    srv.use('/venda', vendaRouter);
-    
-    //rota do produto
-    const produtoRouter = require('./routes/produtoRouter');
-    srv.use('/produto', produtoRouter);
+//Rotas
+const routes = require("./routes/routes.js");
+srv.use(routes);
 
-//servidor fica ouvindo a porta 3000
-srv.listen(3000, function(){
-    console.log('Servidor rodando em http://localhost:3000');
+//Inicialização
+srv.listen(3005, function(){
+    console.log('Servidor rodando em http://localhost:3005');
 });

@@ -1,0 +1,17 @@
+[
+    {
+        "codigo": 123,
+        "nome": "João Silva",
+        "ctps": "123456789",
+        "dataContratacao": "2023-06-07",
+        "valorVendido": 5000
+      },
+      {
+        "codigo": 456,
+        "nome": "Maria Souza",
+        "ctps": "987654321",
+        "dataContratacao": "2023-06-01",
+        "valorVendido": 7500
+      }    
+]
+  

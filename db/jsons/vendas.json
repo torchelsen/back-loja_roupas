@@ -1,0 +1,12 @@
+[
+    {
+        "codigo": 1234,
+        "dataVenda": "2023-06-07",
+        "valorTotal": 150.50
+    },
+    {
+        "codigo": 5678,
+        "dataVenda": "2023-06-05",
+        "valorTotal": 250.75
+    }
+]

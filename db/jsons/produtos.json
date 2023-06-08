@@ -1,0 +1,20 @@
+[
+    {
+        "codigo": 1, 
+        "qtdEstoque": 4,
+        "valor": 15,
+        "nomeProduto": "Meia"
+    },
+    {
+        "codigo": 2, 
+        "qtdEstoque": 6,
+        "valor": 150,
+        "nomeProduto": "Casaco"
+    },
+    {
+        "codigo": 3, 
+        "qtdEstoque": 12,
+        "valor": 250,
+        "nomeProduto": "Tenis"
+    }
+]
