@@ -3,8 +3,9 @@ const router = express.Router();
 
 
 //Roteamento das rotas
-    //rota do vendedor
+   //rota do vendedor
     const vendedorRouter = require('./vendedorRouter.js');
+
     router.use('/vendedor', vendedorRouter);
 
     //rota da venda
@@ -14,5 +15,6 @@ const router = express.Router();
     //rota do produto
     const produtoRouter = require('./produtoRouter.js');
     router.use('/produto', produtoRouter);
+
 
 module.exports = router;

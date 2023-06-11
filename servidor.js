@@ -3,6 +3,8 @@ require("./db/mongo.js");
 const express = require("express");
 const srv = express();
 srv.use(express.json());
+const cors = require("cors");
+srv.use(cors());
 
 //Index e rotas de acesso livre
 srv.get("/", function (req, res) {

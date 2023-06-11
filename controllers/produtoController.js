@@ -1,5 +1,5 @@
 //importa o model estoque
-const produtoModel = require('../models/produtoModel').produtoModel;
+const produtoModel = require('../models/produtoModel');
 
 class ProdutoController{
 
@@ -9,10 +9,10 @@ class ProdutoController{
         res.json(resultado);    
     }
 
-    async buscarPorCodigo(req, res){
-        const codigo  = req.params.codigo;
+    async buscarPorid(req, res){
+        const id  = req.params.id;
         //select * from venda where codigo = 2;
-        const resultado = await produtoModel.findOne({'codigo': codigo});
+        const resultado = await produtoModel.findOne({'_id': id});
         res.json(resultado);
     }
 
@@ -21,8 +21,8 @@ class ProdutoController{
 
         //Gerador de novo código
         //select * from venda order by codigo desc;
-        const objeto = await produtoModel.findOne({}).sort({'codigo': -1});
-        produto.codigo = objeto == null ? 1 : objeto.codigo + 1;
+        const objeto = await produtoModel.findOne({}).sort({'_id': -1});
+        produto.id = objeto == null ? 1 : objeto.id + 1;
 
         //insert into estoque (xxx) values (xxxx);
         const resultado = await produtoModel.create(produto);
@@ -32,16 +32,16 @@ class ProdutoController{
     
 
     async atualizar(req, res){
-        const codigo = req.params.codigo;
+        const id = req.params.id;
         const produto = req.body;
         //update venda set xxxx values xxxx
-        await produtoModel.findOneAndUpdate({'codigo': codigo}, produto);
+        await produtoModel.findOneAndUpdate({'_id': id}, produto);
         res.send("Produto atualizado!");
     }
 
     async excluir(req, res){
-        const codigo = req.params.codigo;
-        await produtoModel.findOneAndDelete({'codigo': codigo});
+        const id = req.params.id;
+        await produtoModel.findOneAndDelete({'_id': id});
         res.send("Produto excluído!");
     }
 }

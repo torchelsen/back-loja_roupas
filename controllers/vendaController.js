@@ -11,10 +11,10 @@ class VendaController{
         res.json(resultado);    
     }
 
-    async buscarPorCodigo(req, res){
-        const codigo  = req.params.codigo;
-        //select * from venda where codigo = 2;
-        const resultado = await vendasModel.findOne({'codigo': codigo});
+    async buscarPorid(req, res){
+        const id  = req.params.id;
+        //select * from venda where id = 2;
+        const resultado = await vendasModel.findOne({'_id': id});
         res.json(resultado);
     }
 
@@ -22,9 +22,9 @@ class VendaController{
         const venda = req.body;
 
         //Gerador de novo código
-        //select * from venda order by codigo desc;
-        const objeto = await vendasModel.findOne({}).sort({'codigo': -1});
-        venda.codigo = objeto == null ? 1 : objeto.codigo + 1;
+        //select * from venda order by id desc;
+        const objeto = await vendasModel.findOne({}).sort({'_id': -1});
+        venda.id = objeto == null ? 1 : objeto.id + 1;
 
         //insert into venda (xxx) values (xxxx);
         const resultado = await vendasModel.create(venda);
@@ -33,16 +33,16 @@ class VendaController{
     }
 
     async atualizar(req, res){
-        const codigo = req.params.codigo;
+        const id = req.params.id;
         const conteudo = req.body;
         //update venda set xxxx values xxxx
-        await vendasModel.findOneAndUpdate({'codigo': codigo}, conteudo);
+        await vendasModel.findOneAndUpdate({'_id': id}, conteudo);
         res.send("Venda atualizado!");
     }
 
     async excluir(req, res){
-        const codigo = req.params.codigo;
-        await vendasModel.findOneAndDelete({'codigo': codigo});
+        const id = req.params.id;
+        await vendasModel.findOneAndDelete({'_id': id});
         res.send("Venda excluído!");
     }
 }
